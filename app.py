@@ -28,7 +28,7 @@ st.title("Breast Cancer Image Classifier")
 st.write("Upload an X-ray to analyze for malignant vs. benign characteristics.")
 
 with st.container():
-    uploaded_file = st.file_uploader(type=["jpg", "png", "jpeg"], key="medical_scan_uploader_v1")
+    uploaded_file = st.file_uploader(label="", type=["jpg", "png", "jpeg"], key="medical_scan_uploader_v1", label_visibility="collapsed")
 
 if uploaded_file:
     image = Image.open(uploaded_file).convert('RGB').resize((256, 256))
