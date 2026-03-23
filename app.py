@@ -24,14 +24,17 @@ interpreter = load_model()
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 
-st.title("🎗️ Breast Cancer Image Classifier")
-st.write("Upload a medical scan to analyze for Malignant vs. Benign characteristics.")
+st.title("Breast Cancer Image Classifier")
+st.write("Upload an X-ray to analyze for malignant vs. benign characteristics.")
 
-uploaded_file = st.file_uploader("Upload Scan (JPG/PNG/JPEG)", type=["jpg", "png", "jpeg"])
+with st.container():
+    uploaded_file = st.file_uploader(type=["jpg", "png", "jpeg"], key="medical_scan_uploader_v1")
 
 if uploaded_file:
     image = Image.open(uploaded_file).convert('RGB').resize((256, 256))
-    st.image(image, caption="Uploaded Scan", use_container_width=True)
+    col1, col2, col3 = st.columns([1, 1, 1])
+    with col2:
+        st.image(image, caption="Uploaded Scan", use_container_width=True)
     
     input_data = np.array(image, dtype=np.float32) / 255.0
     input_data = np.expand_dims(input_data, axis=0)
