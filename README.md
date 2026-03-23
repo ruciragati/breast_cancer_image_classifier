@@ -1,11 +1,9 @@
 # Breast Cancer Image Classifier
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_svg)](https://breastcancerimageclassifier-guccirucci.streamlit.app/)
-
 ## Overview
 A cloud-deployed Convolutional Neural Network (CNN) designed to classify Breast X-ray scans into **malignant** or **benign** categories. 
 
-### (https://breastcancerimageclassifier-guccirucci.streamlit.app/)
+#### (https://breastcancerimageclassifier-guccirucci.streamlit.app/)
 
 ## Features
 * **Model:** TensorFlow Lite (.tflite) for cloud deployment.
