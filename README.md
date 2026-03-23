@@ -1,5 +1,4 @@
 # Breast Cancer Image Classifier
-
 #### Link: (https://breastcancerimageclassifier-guccirucci.streamlit.app/)
 
 ## Overview
