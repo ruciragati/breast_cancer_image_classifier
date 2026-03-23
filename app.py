@@ -2,21 +2,30 @@ import streamlit as st
 import numpy as np
 from PIL import Image
 import tflite_runtime.interpreter as tflite
+import urllib.request
+import os
+
+MODEL_URL = "https://huggingface.co/datasets/guccirucci/breast-cancer-image-classifier/resolve/main/model.tflite"
+MODEL_PATH = "model.tflite"
 
 st.set_page_config(page_title="Breast Cancer Classifier", page_icon="🎗️")
 
-st.title("🎗️ Breast Cancer Image Classifier")
-st.write("Upload a medical scan to analyze for Malignant vs. Benign characteristics.")
-
 @st.cache_resource
 def load_model():
-    interpreter = tflite.Interpreter(model_path="model.tflite")
+    if not os.path.exists(MODEL_PATH):
+        with st.spinner("Please wait..."):
+            urllib.request.urlretrieve(MODEL_URL, MODEL_PATH)
+    
+    interpreter = tflite.Interpreter(model_path=MODEL_PATH)
     interpreter.allocate_tensors()
     return interpreter
 
 interpreter = load_model()
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
+
+st.title("🎗️ Breast Cancer Image Classifier")
+st.write("Upload a medical scan to analyze for Malignant vs. Benign characteristics.")
 
 uploaded_file = st.file_uploader("Upload Scan (JPG/PNG/JPEG)", type=["jpg", "png", "jpeg"])
 
